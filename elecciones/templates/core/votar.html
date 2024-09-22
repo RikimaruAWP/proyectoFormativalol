@@ -1,0 +1,38 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+    <div class="container">
+        {% if candidatos %}
+            <h1>Votos</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nombre completo</th>
+                        <th>Votar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in candidatos %}
+                    <tr>
+                        <td>{{ c.nombre }} {{ c.apellido }}</td>
+                        <td>
+                            <form action="{% url 'votos' %}" method="POST">
+                                {% csrf_token %}
+                                    <input type="hidden" name="nombre" value="{{ c.nombre }}">
+                                    <input type="hidden" name="apellido" value="{{ c.apellido }}">
+                                <button class="btn btn-primary">+ Voto</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                </tr>
+            </table>
+        </div>
+        {% else %}
+            <div class="container text-center mt-4">
+                <h2>Lista vacía</h2>
+            </div>
+        {% endif %}
+{% endblock %}
+

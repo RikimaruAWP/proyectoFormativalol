@@ -1,0 +1,17 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+
+    <div class="container">
+        <h1>Inscripcion candidatos</h1>
+        <form action="{% url "formulario" %}" method="POST" >
+            {% csrf_token %}
+            <div class="col-3">
+                <input class="form-control mt-2" type="text" placeholder="Nombre Candidato" name = "nombre">
+                <input class="form-control mt-2" type="text" placeholder="Apellido Candidato" name = "apellido">
+                <button class="btn btn-success mt-2">Registrar</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock  %}
